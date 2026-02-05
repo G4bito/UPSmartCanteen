@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/nav_stall">
+
+    <fragment
+        android:id="@+id/nav_stall"
+        android:name="com.yutahnahsyah.upsmartcanteenfrontend.fragments.StallFragment"
+        android:label="Stalls"
+        tools:layout="@layout/fragment_stall">
+        <action
+            android:id="@+id/action_nav_stall_to_nav_store_food"
+            app:destination="@id/nav_store_food" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/nav_food"
+        android:name="com.yutahnahsyah.upsmartcanteenfrontend.fragments.FoodFragment"
+        android:label="Food"
+        tools:layout="@layout/fragment_food" />
+
+    <fragment
+        android:id="@+id/nav_cart"
+        android:name="com.yutahnahsyah.upsmartcanteenfrontend.fragments.CartFragment"
+        android:label="Cart"
+        tools:layout="@layout/fragment_cart" />
+
+    <fragment
+        android:id="@+id/nav_profile"
+        android:name="com.yutahnahsyah.upsmartcanteenfrontend.fragments.ProfileFragment"
+        android:label="Profile"
+        tools:layout="@layout/fragment_profile" />
+
+    <fragment
+        android:id="@+id/nav_store_food"
+        android:name="com.yutahnahsyah.upsmartcanteenfrontend.fragments.StoreFoodFragment"
+        android:label="Store Menu"
+        tools:layout="@layout/fragment_store_food">
+        <argument
+            android:name="storeName"
+            app:argType="string" />
+    </fragment>
+</navigation>
