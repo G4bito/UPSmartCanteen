@@ -22,6 +22,7 @@ class Login : BaseActivity() {
         val emailField = findViewById<EditText>(R.id.emailEditText)
         val passwordField = findViewById<EditText>(R.id.passwordEditText)
         val loginBtn = findViewById<Button>(R.id.loginButton)
+        val registerBtn = findViewById<Button>(R.id.registerButton)
         val togglePasswordBtn = findViewById<ImageButton>(R.id.togglePasswordVisibility)
 
         togglePasswordBtn.setOnClickListener {
@@ -47,6 +48,11 @@ class Login : BaseActivity() {
             } else {
                 Toast.makeText(this, "Please fill in all fields", Toast.LENGTH_SHORT).show()
             }
+        }
+
+        registerBtn.setOnClickListener {
+            val intent = Intent(this@Login, CreateAccountActivity::class.java)
+            startActivity(intent)
         }
     }
 }
