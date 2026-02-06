@@ -2,5 +2,6 @@
     <!-- Base application theme. -->
     <style name="Base.Theme.UPSmartCanteenFrontend" parent="Theme.Material3.DayNight.NoActionBar">
         <item name="android:statusBarColor" tools:targetApi="1">#1B4323</item>
+        <item name="android:navigationBarColor" tools:targetApi="1">#1B4323</item>
     </style>
 </resources>
