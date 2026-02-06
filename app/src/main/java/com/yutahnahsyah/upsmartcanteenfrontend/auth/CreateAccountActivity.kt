@@ -60,7 +60,7 @@ class CreateAccountActivity : AppCompatActivity() {
         val isValidDomain = emailLower.endsWith("@phinmaed.com") ||
                 emailLower.endsWith("@gmail.com")
 
-        if (!isValidDomain) {
+        if (!isValidDomain) { 
             Toast.makeText(this, "Use PhinmaEd or Gmail account", Toast.LENGTH_SHORT).show()
             return false
         }
