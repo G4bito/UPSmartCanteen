@@ -16,7 +16,7 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@drawable/profile_gradient_bg"
+            android:background="#1B4323"
             android:clipChildren="false"
             android:clipToPadding="false"
             android:paddingBottom="40dp">
