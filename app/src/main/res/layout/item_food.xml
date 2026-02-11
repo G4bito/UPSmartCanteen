@@ -54,7 +54,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:layout_marginBottom="16dp"
-            android:background="#F2EFE9"
+            android:background="@color/white"
             android:paddingHorizontal="8dp"
             android:paddingVertical="2dp"
             android:text="₱0.00"
