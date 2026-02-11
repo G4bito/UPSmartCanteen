@@ -20,6 +20,7 @@ class CreateAccountActivity : AppCompatActivity() {
         val etFullName = findViewById<EditText>(R.id.etFullName)
         val etEmail = findViewById<EditText>(R.id.etEmail)
         val etPassword = findViewById<EditText>(R.id.etPassword)
+        val etConfirmPassword = findViewById<EditText>(R.id.etConfirmPassword)
         val btnRegister = findViewById<MaterialButton>(R.id.btnRegister)
         val tvLogin = findViewById<TextView>(R.id.tvLogin)
 
@@ -27,16 +28,18 @@ class CreateAccountActivity : AppCompatActivity() {
             val name = etFullName.text.toString().trim()
             val email = etEmail.text.toString().trim()
             val password = etPassword.text.toString().trim()
+            val confirmPassword = etConfirmPassword.text.toString().trim()
 
             // Logic to check if fields are valid
-            if (validateInput(name, email, password)) {
+            if (validateInput(name, email, password, confirmPassword)) {
                 Toast.makeText(this, "Welcome, $name!", Toast.LENGTH_SHORT).show()
 
                 // Go to Main Activity
                 val intent = Intent(this, MainActivity::class.java)
                 startActivity(intent)
                 finish()
-            }        }
+            }
+        }
 
         tvLogin.setOnClickListener {
             // Closes this screen and goes back to Login
@@ -44,7 +47,7 @@ class CreateAccountActivity : AppCompatActivity() {
         }
     }
 
-    private fun validateInput(name: String, email: String, password: String): Boolean {
+    private fun validateInput(name: String, email: String, password: String, confirmPassword: String): Boolean {
         if (name.isEmpty()) {
             Toast.makeText(this, "Please enter your name", Toast.LENGTH_SHORT).show()
             return false
@@ -60,13 +63,23 @@ class CreateAccountActivity : AppCompatActivity() {
         val isValidDomain = emailLower.endsWith("@phinmaed.com") ||
                 emailLower.endsWith("@gmail.com")
 
-        if (!isValidDomain) { 
+        if (!isValidDomain) {
             Toast.makeText(this, "Use PhinmaEd or Gmail account", Toast.LENGTH_SHORT).show()
             return false
         }
 
         if (password.length < 6) {
             Toast.makeText(this, "Password must be at least 6 characters", Toast.LENGTH_SHORT).show()
+            return false
+        }
+
+        if (confirmPassword.isEmpty()) {
+            Toast.makeText(this, "Please confirm your password", Toast.LENGTH_SHORT).show()
+            return false
+        }
+
+        if (password != confirmPassword) {
+            Toast.makeText(this, "Passwords do not match", Toast.LENGTH_SHORT).show()
             return false
         }
 
