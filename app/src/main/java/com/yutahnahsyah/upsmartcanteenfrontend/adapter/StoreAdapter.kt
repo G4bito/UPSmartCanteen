@@ -10,29 +10,44 @@ import com.yutahnahsyah.upsmartcanteenfrontend.R
 import com.yutahnahsyah.upsmartcanteenfrontend.data.model.Store
 
 class StoreAdapter(
-  private val stores: List<Store>,
-  private val onClick: (Store) -> Unit
+    private val originalStores: List<Store>,
+    private val onClick: (Store) -> Unit
 ) : RecyclerView.Adapter<StoreAdapter.StoreViewHolder>() {
 
-  class StoreViewHolder(view: View) : RecyclerView.ViewHolder(view) {
-    val name: TextView = view.findViewById(R.id.storeName)
-    val category: TextView = view.findViewById(R.id.storeCategory)
-    val image: ImageView = view.findViewById(R.id.storeImage)
-  }
+    private var filteredStores: List<Store> = originalStores
 
-  override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): StoreViewHolder {
-    val view = LayoutInflater.from(parent.context).inflate(R.layout.item_store, parent, false)
-    return StoreViewHolder(view)
-  }
+    class StoreViewHolder(view: View) : RecyclerView.ViewHolder(view) {
+        val name: TextView = view.findViewById(R.id.storeName)
+        val category: TextView = view.findViewById(R.id.storeCategory)
+        val image: ImageView = view.findViewById(R.id.storeImage)
+    }
 
-  override fun onBindViewHolder(holder: StoreViewHolder, position: Int) {
-    val store = stores[position]
-    holder.name.text = store.name
-    holder.category.text = store.category
-    holder.image.setImageResource(store.imageRes)
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): StoreViewHolder {
+        val view = LayoutInflater.from(parent.context).inflate(R.layout.item_store, parent, false)
+        return StoreViewHolder(view)
+    }
 
-    holder.itemView.setOnClickListener { onClick(store) }
-  }
+    override fun onBindViewHolder(holder: StoreViewHolder, position: Int) {
+        val store = filteredStores[position]
+        holder.name.text = store.name
+        holder.category.text = store.category
+        holder.image.setImageResource(store.imageRes)
 
-  override fun getItemCount() = stores.size
+        holder.itemView.setOnClickListener { onClick(store) }
+    }
+
+    override fun getItemCount() = filteredStores.size
+
+    // Add filter method
+    fun filter(query: String) {
+        filteredStores = if (query.isEmpty()) {
+            originalStores
+        } else {
+            originalStores.filter { store ->
+                store.name.contains(query, ignoreCase = true) ||
+                        store.category.contains(query, ignoreCase = true)
+            }
+        }
+        notifyDataSetChanged()
+    }
 }
